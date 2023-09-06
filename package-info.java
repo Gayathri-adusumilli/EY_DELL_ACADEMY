@@ -1,1 +1,1 @@
-package com.programming.class_3;
+package com.programming.class_6;
