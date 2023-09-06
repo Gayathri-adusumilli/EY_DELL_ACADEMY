@@ -1,0 +1,3691 @@
+cooker> db.recipes.find({"title":{$regex:/taco/i}});
+[
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos',
+    calories_per_serving: 205,
+    cook_time: 19,
+    desc: 'Mexican soft tacos',
+    directions: [
+      'Put seasoning on chicken breasts',
+      'Grill until done',
+      'Chop chicken into pieces',
+      'Put in tortillas'
+    ],
+    ingredients: [
+      { name: 'chicken breast', quantity: { amount: 1, unit: 'lbs' } },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      {
+        name: 'small flour tortillas',
+        quantity: { amount: 12, unit: 'oz' }
+      }
+    ],
+    likes: [ 261, 1, 415 ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 4, 4,
+      2, 5, 3
+    ],
+    rating_avg: 3.71,
+    servings: 5,
+    tags: [ 'mexican', 'quick', 'easy', 'chicken' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+cooker>  v/,l;
+Uncaught:
+SyntaxError: Unexpected token (1:3)
+      {
+> 1 |  v/,l;: 'ground beef (lean)',
+    |    ^antity: { amount: 1, unit: 'lbs' }
+  2 | },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+cooker>
+    ],
+cooker>
+    likes_count: 2,
+cooker>
+    rating: [
+cooker>
+      5, 2, 2, 4, 5
+cooker>
+    rating_avg: 3.5,
+cooker>
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ],
+cooker>
+  }
+cooker>
+cooker> db.recipes.find({"title":{$regex:/taco/i}});
+cooker>
+
+cooker>
+
+cooker>
+
+
+cooker>
+
+
+cooker> db.recipes.find({"title":{$regex:/taco/i}},{"title":1});
+[
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos'
+  },
+  { _id: ObjectId("5e5e9c470d33e9e8e3891b35"), title: 'Tacos' }
+]
+cooker> db.getName();
+cooker
+cooker> db.cool_stuff.insertOne({});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64f555d93b49638e48d0d6dd")
+}
+cooker> show collections;
+cool_stuff
+examples
+recipes
+users
+cooker> db.cool.newStuff.insertOne({});
+{
+  acknowledged: true,
+  insertedId: ObjectId("64f5560f3b49638e48d0d6de")
+}
+cooker> show collections;
+cool_stuff
+cool.newStuff
+examples
+recipes
+users
+cooker> doc = {"title": "Tacos", cook_time:20};
+{ title: 'Tacos', cook_time: 20 }
+cooker> db.tacos.insertMany(doc);
+MongoInvalidArgumentError: Argument "docs" must be an array of documents
+cooker> db.tacos.insertOne(doc);
+{
+  acknowledged: true,
+  insertedId: ObjectId("64f557d43b49638e48d0d6df")
+}
+cooker> db.t
+cooker.t
+cooker>
+
+cooker>
+
+cooker>
+ReferenceError: clr is not defined
+cooker>
+
+cooker>
+
+cooker>
+
+cooker>
+
+cooker>
+
+cooker>
+
+cooker> db.recipes.find().sort({"title": 1}).limit(2).skip(5);
+[
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 2,
+    prep_time: 10,
+cooker> db.recipes.find({"tags":{$regex:/mexican/i}},{"title":{$regex:/tacos/i}},{"title":1,"tags":1,"_id":0});
+MongoServerError: Unknown expression $regex
+cooker>
+
+cooker>
+(To exit, press Ctrl+C again or Ctrl+D or type .exit)
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1}).limit(1);
+[
+  {
+    _id: ObjectId("5e877cba20a4f574c0aa56da"),
+    title: 'Pancakes',
+    ingredients: [
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'milk' },
+      {
+        amount: { quantity: 1.5, unit: 'tablespoon' },
+        name: 'white vinegar'
+      },
+      {
+        amount: { quantity: 0.5, unit: 'teaspoon' },
+        name: 'baking soda'
+      },
+      { amount: { quantity: 0.5, unit: 'teaspoon' }, name: 'salt' },
+      {
+        amount: { quantity: 2, unit: 'tablespoon' },
+        name: 'granulated sugar'
+      },
+      {
+        amount: { quantity: 1, unit: 'teaspoon' },
+        name: 'baking powder'
+      },
+      {
+        amount: { quantity: 1, unit: 'cup' },
+        name: 'all-purpose flour'
+      },
+      { amount: { quantity: 1, unit: null }, name: 'egg' },
+      { amount: { quantity: 2.5, unit: 'tablespoon' }, name: 'butter' }
+    ]
+  }     amount: { quantity: 3, unit: 'lbs' },
+]       name: 'creamy peanut butter'
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.amount":0}).limit(1);
+MongoServerError: Path collision at ingredients.amount remaining portion amount
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"quantity":1}).limit(1);
+[   prep_time: 12,
+  { rating: [ 1, 1, 1, 1, 5 ],
+    _id: ObjectId("5e877cba20a4f574c0aa56da"),
+    title: 'Pancakes',
+    ingredients: [s', 'easy' ],
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'milk' },
+      {
+        amount: { quantity: 1.5, unit: 'tablespoon' },
+        name: 'white vinegar't({"title": 1}).limit(3).skip(5);
+      },
+      {
+        amount: { quantity: 0.5, unit: 'teaspoon' },
+        name: 'baking soda'
+      },ries_per_serving: 210,
+      { amount: { quantity: 0.5, unit: 'teaspoon' }, name: 'salt' },
+      {c: 'Classic Mexican tacos',
+        amount: { quantity: 2, unit: 'tablespoon' },
+        name: 'granulated sugar'
+      },dd taco seasoning and water, mix',
+      {Bring to boil',
+        amount: { quantity: 1, unit: 'teaspoon' },ired consistency',
+        name: 'baking powder'
+      },
+      {redients: [
+        amount: { quantity: 1, unit: 'cup' },
+        name: 'all-purpose flour'',
+      },quantity: { amount: 1, unit: 'lbs' }
+      { amount: { quantity: 1, unit: null }, name: 'egg' },
+      { amount: { quantity: 2.5, unit: 'tablespoon' }, name: 'butter' }
+    ] { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+  } ],
+]   likes: [ 1, 415 ],
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":0}).limit(1);
+MongoServerError: Path collision at ingredients.quantity remaining portion quantity
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients.quantity":0}).limit(1);
+MongoServerError: Cannot do exclusion on field ingredients.quantity in inclusion projection
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1).limit(1);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:94)
+    servings: 4,
+> 1 | db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1).limit(1);
+    |                                                                                               ^
+  2 |
+  {
+cooker>
+cooker> db.recipes.find().count();
+cooker>
+cooker> show databases;
+cooker>
+config  108.00 KiB
+cooker>
+local    72.00 KiB
+cooker>
+cooker> use test;
+cooker>
+test> db.users.find.count();
+cooker>
+test> db.users.find().count();
+cooker>
+test> use users;
+cooker>
+users> db.users.find().count();
+cooker>
+users> use cooker;
+cooker>
+cooker> use users;
+cooker>
+users> use cooker;
+cooker>
+cooker> db.users.find().count();
+cooker>
+cooker> db.examples.find().count();
+cooker>
+cooker> db.examples.find({},{"title":1}).limit(2);
+cooker>
+  { _id: ObjectId("5ee69e393260aab97ea0d58e"), title: 'Delete me' },
+cooker>
+cooker> db.recipes.find({},{"title":-1, "calories_per_serving": 1});
+cooker>
+  {
+cooker>
+    title: 'Maple Smoked Salmon',
+cooker>
+  },
+cooker>
+    _id: ObjectId("5edf1cd43260aab97ea0d588"),
+cooker>
+    calories_per_serving: 384
+cooker>
+  {
+cooker>
+    title: 'Chicken Soft Tacos',
+cooker>
+  },
+cooker>
+    _id: ObjectId("5e87856d07beb474c074c5ca"),
+cooker>
+    calories_per_serving: 273
+cooker>
+  {
+cooker>
+    title: 'Pancakes',
+cooker>
+  },
+cooker>
+    _id: ObjectId("5edf1d313260aab97ea0d589"),
+cooker>
+    calories_per_serving: 271
+cooker>
+  {
+cooker>
+    title: 'Tacos',
+cooker>
+  }
+cooker>
+cooker> db.recipes.find({},{"title":1, "calories_per_serving": 1});
+
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1).limit(1);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:94)
+
+> 1 | db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1).limit(1);
+    |                                                                                               ^
+  2 |
+
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:94)
+
+> 1 | db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1);
+    |                                                                                               ^
+  2 |
+
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1});
+MongoServerError: Path collision at ingredients.quantity remaining portion quantity
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.amount":0});
+MongoServerError: Path collision at ingredients.amount remaining portion amount
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1});
+MongoServerError: Path collision at ingredients.quantity remaining portion quantity
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1).limit(1);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:94)
+
+> 1 | db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1).limit(1);
+    |                                                                                               ^
+  2 |
+
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1});
+MongoServerError: Path collision at ingredients.quantity remaining portion quantity
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1).limit(1);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:94)
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+> 1 | db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1).limit(1);
+    |                                                                                               ^
+  2 |
+]
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1).limit(1);
+Uncaught:lidArgumentError: Invalid sort format: 1 Sort must be a valid object
+SyntaxError: Unexpected token, expected "," (1:94)er_serving": 1}).sort("title":1);
+Uncaught:
+> 1 | db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1,"ingredients.quantity":1).limit(1);
+    |                                                                                               ^
+  2 | db.recipes.find({},{"title":1, "calories_per_serving": 1}).sort("title":1);
+    |                                                                        ^
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients":1}).limit(1);
+[
+  {ker> db.recipes.find({},{"title":1, "calories_per_serving": 1}).sort({"title":1});
+    _id: ObjectId("5e877cba20a4f574c0aa56da"),
+    title: 'Pancakes',
+    ingredients: [
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'milk' },}).sort({"title":1}).skip(6);
+      {
+        amount: { quantity: 1.5, unit: 'tablespoon' },
+        name: 'white vinegar'60aab97ea0d589"),
+      },e: 'Zucchini Brownies',
+      {ories_per_serving: 271
+        amount: { quantity: 0.5, unit: 'teaspoon' },
+        name: 'baking soda'
+      },db.recipes.find({},{"title":1, "calories_per_serving": 1}).sort({"title":1}).limit(8);
+      { amount: { quantity: 0.5, unit: 'teaspoon' }, name: 'salt' },
+      {
+        amount: { quantity: 2, unit: 'tablespoon' },
+        name: 'granulated sugar'
+      },ries_per_serving: 384
+      {
+        amount: { quantity: 1, unit: 'teaspoon' },
+        name: 'baking powder'beb474c074c5ca"),
+      },e: 'Brown Sugar Meatloaf',
+      {ories_per_serving: 273
+        amount: { quantity: 1, unit: 'cup' },
+        name: 'all-purpose flour'
+      }, ObjectId("5e6fd805fa98021236426a24"),
+      { amount: { quantity: 1, unit: null }, name: 'egg' },
+      { amount: { quantity: 2.5, unit: 'tablespoon' }, name: 'butter' }
+    ]
+  }
+]   _id: ObjectId("5e878f5220a4f574c0aa56db"),
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients.amount":1}).limit(1);
+[   calories_per_serving: 286
+  {,
+    _id: ObjectId("5e877cba20a4f574c0aa56da"),
+    title: 'Pancakes',77cba20a4f574c0aa56da"),
+    ingredients: [es',
+      { amount: { quantity: 0.75, unit: 'cup' } },
+      { amount: { quantity: 1.5, unit: 'tablespoon' } },
+      { amount: { quantity: 0.5, unit: 'teaspoon' } },
+      { amount: { quantity: 0.5, unit: 'teaspoon' } },
+      { amount: { quantity: 2, unit: 'tablespoon' } },
+      { amount: { quantity: 1, unit: 'teaspoon' } },
+      { amount: { quantity: 1, unit: 'cup' } },
+      { amount: { quantity: 1, unit: null } },
+      { amount: { quantity: 2.5, unit: 'tablespoon' } }
+    ]itle: 'Zucchini Brownies',
+  } calories_per_serving: 271
+] }
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients.amoun Cannot do exclusion on field ingredients.quantity in inclusion projectioncld
+Uncaught:
+SyntaxError: Unterminated string constant. (1:54)
+    _id: ObjectId("5e87856d07beb474c074c5ca"),
+> 1 | db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients.amoun Cannot do exclusion on field ingredients.quantity in inclusion projectioncldes_per_serving: 273
+    |                                                       ^
+  2 |
+cooker> db.recipes.find({},{"title":1, "calories_per_serving": 1}).sort({"title":1}).skip(1).limit(1);
+cooker> db.recipes.find({"ingredients.name":"egg"},{"title":1,"ingredients.amount":0}).limit(1);
+MongoServerError: Cannot do exclusion on field ingredients.amount in inclusion projection
+cooker> db.recipes.find({"ingredients.name":"egg"},{"ingredients.amount":0}).limit(1);
+[   title: 'Brown Sugar Meatloaf',
+  { calories_per_serving: 273
+    _id: ObjectId("5e877cba20a4f574c0aa56da"),
+    title: 'Pancakes',
+    calories_per_serving: 232,
+    comments: [ commit is not defined
+      { db.recipes.find({},{"title":1, "calories_per_serving": 1}).sort({"title":1}).skip(1).limit(1);
+        body: 'I love these! They are so fluffy!',
+        date: ISODate("2000-01-03T18:42:30.000Z"),
+        name: 'Grace Hopper',beb474c074c5ca"),
+        user_id: 2Sugar Meatloaf',
+      }ories_per_serving: 273
+    ],
+    cook_time: 10,
+    desc: "Everyone's favorite pancakes",te":30}},{"title":1, "calories_per_serving": 1, "cook_time":1}).sort({"title":1}).skip(1).limit(1);
+    directions: [
+      'Mix milk and vinegar in a medium bowl let set for 5 minutes to "sour".',
+      'Mix flour, sugar, baking powder, baking soda, and salt in a large mixing bowl.',
+      'Combine butter egg into milk.',
+      'Pour dry mixture into the wet ingredients and whisk until smooth.',
+      'Heat electric skillet to 435 F and coat with cooking spray.',
+      'Pour 1/4 cup of batter for each pancake onto the skillet, and cook until bubbles appear on the sides.',
+      'Flip and cook until browned.'
+    ],> db.recipes.find({"cook_time":{"$lte":30}},{"title":1, "calories_per_serving": 1, "cook_time":1});
+    ingredients: [
+      { name: 'milk' },
+      { name: 'white vinegar' },574c0aa56db"),
+      { name: 'baking soda' },n',
+      { name: 'salt' },g: 286,
+      { name: 'granulated sugar' },
+      { name: 'baking powder' },
+      { name: 'all-purpose flour' },
+      { name: 'egg' },fd805fa98021236426a24"),
+      { name: 'butter' } Tacos',
+    ],lories_per_serving: 205,
+    likes: [ 261, 415, 1, 35, 75 ],
+    likes_count: 4,
+    prep_time: 10,
+    rating: [ctId("5e877cba20a4f574c0aa56da"),
+      5, 4, 3, 5, 4,',
+      5, 3, 1, 5_serving: 232,
+    ],ok_time: 10
+    rating_avg: 3.88,
+    servings: 4,
+    type: 'Breakfast'5e9c470d33e9e8e3891b35"),
+  } title: 'Tacos',
+]   calories_per_serving: 210,
+cooker> db.recipes.find({"ingredients.name":"egg"},{"ingredients.amount":0,"title"}).limit(1);
+Uncaught:
+SyntaxError: Unexpected token (1:74)
+cooker> db.recipes.find({"cook_time":{"$gte":30}},{"title":1, "calories_per_serving": 1, "cook_time":1});
+> 1 | db.recipes.find({"ingredients.name":"egg"},{"ingredients.amount":0,"title"}).limit(1);
+    |                                                                           ^
+  2 |id: ObjectId("5edf1cd43260aab97ea0d588"),
+    title: 'Apple Pie',
+cooker> db.recipes.find({"ingredients.name":"egg"},{"ingredients.amount":0,"title":1}).limit(1);
+MongoServerError: Cannot do inclusion on field title in exclusion projection
+cooker> db.recipes.find({"ingredients.name":"egg"},{"ingredients.amount":0).limit(1);
+Uncaught:ObjectId("5edf1cd43260aab97ea0d588"), title: 'Apple Pie' },
+SyntaxError: Unexpected token, expected "," (1:66)
+    _id: ObjectId("5e87856d07beb474c074c5ca"),
+> 1 | db.recipes.find({"ingredients.name":"egg"},{"ingredients.amount":0).limit(1);
+    |                                                                   ^
+  2 |
+    _id: ObjectId("5edf1d313260aab97ea0d589"),
+cooker> db.recipes.find({"ingredients.name":"egg"},{"ingredients.amount":0}).limit(1);
+[ }
+  {
+    _id: ObjectId("5e877cba20a4f574c0aa56da"),0}},{"title":1});
+    title: 'Pancakes',
+    calories_per_serving: 232,
+    comments: [Id("5e878f5220a4f574c0aa56db"),
+      {le: 'Maple Smoked Salmon'
+        body: 'I love these! They are so fluffy!',
+        date: ISODate("2000-01-03T18:42:30.000Z"),
+        name: 'Grace Hopper',98021236426a24"),
+        user_id: 2n Soft Tacos'
+      }
+    ],d: ObjectId("5e877cba20a4f574c0aa56da"), title: 'Pancakes' },
+
+cooker> db.examples.find({}, {"title":1});
+[
+  { _id: ObjectId("5ee69e393260aab97ea0d58e"), title: 'Delete me' },
+  { _id: ObjectId("5ee69d943260aab97ea0d58d"), title: 'Pizza' },
+  { _id: ObjectId("5e5e9c470d33e9e8e3891b35"), title: 'Tacos' }
+]
+cooker> db.examples.updateOne({"title":"Pizza"},{$set:{"title":"Thin Crust Pizza"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+cooker> db.examples.find({}, {"title":1});
+[
+  { _id: ObjectId("5ee69e393260aab97ea0d58e"), title: 'Delete me' },
+  {
+    _id: ObjectId("5ee69d943260aab97ea0d58d"),
+    title: 'Thin Crust Pizza'
+  },
+  { _id: ObjectId("5e5e9c470d33e9e8e3891b35"), title: 'Tacos' }
+]
+cooker> db.examples.updateOne({"title":"Pizza"},{$set:{"title":"Cutie patotie"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+cooker> db.examples.find({}, {"title":1});
+[
+  { _id: ObjectId("5ee69e393260aab97ea0d58e"), title: 'Delete me' },
+  {
+    _id: ObjectId("5ee69d943260aab97ea0d58d"),
+    title: 'Thin Crust Pizza'
+  },er> db.recipes.find({"desc":{$regex:/smoke/i}},{"desc":1});
+  { _id: ObjectId("5e5e9c470d33e9e8e3891b35"), title: 'Tacos' }
+] {
+cooker> db.examples.updateOne({"title":"Thin Crust Pizza"},{$set:{"title":"Cutie patotie"}});
+{   desc: 'Wonderful smoked salon with maple wood'
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,s.find({"servings": {"$gt":3}},{{"title":1},{"_id":0}});
+  modifiedCount: 1,
+  upsertedCount: 0ected token (1:42)
+}
+cooker> db.examples.find({}, {"title":1});
+[   |                                           ^
+  { _id: ObjectId("5ee69e393260aab97ea0d58e"), title: 'Delete me' },
+  { _id: ObjectId("5ee69d943260aab97ea0d58d"), title: 'Cutie patotie' },
+  { _id: ObjectId("5e5e9c470d33e9e8e3891b35"), title: 'Tacos' }d":0});
+] { title: 'Tacos' } ]
+cooker> db.examples.updateOne({"title":"Cutie patotie"},{$Unset:{"title":"Cutie patotie"}};
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:82)
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+> 1 | db.examples.updateOne({"title":"Cutie patotie"},{$Unset:{"title":"Cutie patotie"}};
+    |                                                                                   ^
+  2 |
+  {
+cooker> db.examples.updateOne({"title":"Cutie patotie"},{$unset:{"title":"Cutie patotie"}});
+{   title: 'Brown Sugar Meatloaf',
+  acknowledged: true,eef', 'family meal', 'easy' ]
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,5edf1d313260aab97ea0d589"),
+  upsertedCount: 0ni Brownies',
+}   tags: [ 'sweets', 'easy' ]
+cooker> db.examples.find({}, {"title":1});
+[ {
+  { _id: ObjectId("5ee69e393260aab97ea0d58e"), title: 'Delete me' },
+  { _id: ObjectId("5ee69d943260aab97ea0d58d") },
+  { _id: ObjectId("5e5e9c470d33e9e8e3891b35"), title: 'Tacos' }
+] }
+cooker> db.examples.deleteOne({{$unset:{"title":"Cutie patotie"}});
+Uncaught:b.recipes.find({"tags":{$all:["easy","mexican"]}},{"title":1,"tags":1});
+SyntaxError: Unexpected token (1:23)
+  {
+> 1 | db.examples.deleteOne({{$unset:{"title":"Cutie patotie"}});
+    |                        ^',
+  2 |ags: [ 'mexican', 'quick', 'easy', 'chicken' ]
+  },
+cooker> db.examples.deleteOne({$unset:{"title":"Cutie patotie"});
+Uncaught:ObjectId("5e5e9c470d33e9e8e3891b35"),
+SyntaxError: Unexpected token, expected "," (1:55)
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ]
+> 1 | db.examples.deleteOne({$unset:{"title":"Cutie patotie"});
+    |                                                        ^
+  2 |r> db.recipes.find({"tags":{$all:["easy","mexican"]}},{"title":1,"tags":1,"_id"=0});
+Uncaught:
+cooker> db.examples.deleteOne({$unset:{"title":"Cutie patotie"}});
+MongoServerError: unknown top level operator: $unset. If you have a field name that starts with a '$' symbol, consider using $getField or $setField. | db.recipes.find({"tags":{$all:["easy","mexican"]}},{"title":1,"tags":1,"_id"=0});
+cooker> db.examples.deleteOne({"title":"Cutie patotie"},{$unset:{"title":"Cutie patotie"}});
+{ acknowledged: true, deletedCount: 0 }
+cooker> db.examples.deleteOne({"title":""},{$unset:{"title":"Cutie patotie"}});
+{ acknowledged: true, deletedCount: 0 }
+cooker> db.examples.deleteOne({"title":"Delete Me"},{$unset:{"title":"Delete Me"}});
+{ acknowledged: true, deletedCount: 0 }
+cooker> db.examples.find({}, {"title":1});
+[   tags: [ 'mexican', 'quick', 'easy', 'chicken' ]
+  { _id: ObjectId("5ee69e393260aab97ea0d58e"), title: 'Delete me' },
+  { _id: ObjectId("5ee69d943260aab97ea0d58d") },
+  { _id: ObjectId("5e5e9c470d33e9e8e3891b35"), title: 'Tacos' }
+]   tags: [ 'mexican', 'quick', 'easy', 'ground beef' ]
+cooker> db.examples.deleteOne({"title":"Delete me"},{$unset:{"title":"Delete me"}});
+{ acknowledged: true, deletedCount: 1 }
+cooker> db.examples.find({}, {"title":1});
+[
+  { _id: ObjectId("5ee69d943260aab97ea0d58d") },
+  { _id: ObjectId("5e5e9c470d33e9e8e3891b35"), title: 'Tacos' }
+]   tags: [ 'mexican', 'quick', 'easy', 'chicken' ]
+cooker>
+
+    title: 'Brown Sugar Meatloaf',
+    tags: [ 'ground beef', 'family meal', 'easy' ]
+  },
+  { title: 'Zucchini Brownies', tags: [ 'sweets', 'easy' ] },
+  {
+    title: 'Tacos',
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ]
+  }
+]
+cooker> db.recipes.find({"tags":$all:{$regex:/mexican/i}},{"title":1,"tags":1,"_id":0});
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:28)
+
+> 1 | db.recipes.find({"tags":$all:{$regex:/mexican/i}},{"title":1,"tags":1,"_id":0});
+    |                             ^
+  2 |
+
+cooker> db.recipes.find({"tags":$all:[$regex:/mexican/i]},{"title":1,"tags":1,"_id":0});
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:28)
+
+> 1 | db.recipes.find({"tags":$all:[$regex:/mexican/i]},{"title":1,"tags":1,"_id":0});
+    |                             ^
+  2 |
+
+cooker> db.recipes.find({"tags":{$regex:/mexican,easy/i}},{"title":1,"tags":1,"_id":0});
+
+cooker> db.recipes.find({"tags":{$regex:/mexican/i},{$regex:/easy/i}},{"title":1,"tags":1,"_id":0});
+Uncaught:
+SyntaxError: Unexpected token (1:44)
+
+> 1 | db.recipes.find({"tags":{$regex:/mexican/i},{$regex:/easy/i}},{"title":1,"tags":1,"_id":0});
+    |                                             ^
+  2 |
+
+cooker> db.recipes.find({"tags":{$regex:/mexican/i}}{"tags":{$regex:/easy/i}},{"title":1,"tags":1,"_id":0});
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:44)
+
+> 1 | db.recipes.find({"tags":{$regex:/mexican/i}}{"tags":{$regex:/easy/i}},{"title":1,"tags":1,"_id":0});
+    |                                             ^
+  2 |
+
+cooker> db.recipes.find({"tags":{$regex:/mexican/i}},{"tags":{$regex:/easy/i}},{"title":1,"tags":1,"_id":0});
+MongoServerError: Unknown expression $regex
+cooker> db.recipes.find({"tags":{$regex:/mexican/i}},{"tags":{$regex:/easy/i}},{"title":1,"tags":1,"_id":0});
+MongoServerError: Unknown expression $regex
+cooker>
+
+
+cooker>
+
+cooker> db.recipes.find({"tags":{$regex:/mexican/i}},{"title":1,"tags":1,"_id":0});
+[
+  {
+    title: 'Chicken Soft Tacos',
+    tags: [ 'mexican', 'quick', 'easy', 'chicken' ]
+  },
+  {
+    title: 'Tacos',
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ]
+  }
+]
+cooker> db.recipes.find({"tags":{$regex:/mexican/i}},{"ti"cook_time":20, "prep_time":15tke":{$regex:/easy/i}},{"title":1,"tags":1,"_id":0});
+cooker> db.recipes.find({"tags":{$regex:/mexican/i}}{"title":{$regex:/tacos/i}},{"title":1,"tags":1,"_id":0});
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:44)
+
+> 1 | db.recipes.find({"tags":{$regex:/mexican/i}}{"title":{$regex:/tacos/i}},{"title":1,"tags":1,"_id":0});
+    |                                             ^
+  2 |
+
+cooker> db.recipes.find({"tags":{$regex:/mexican/i}},{"title":{$regex:/tacos/i}},{"title":1,"tags":1,"_id":0});
+MongoServerError: Unknown expression $regex
+cooker> db.recipes.find({"tags":{$regex:/mexican/i},"title":{$regex:/tacos/i}}
+cooker> db.recipes.find({"tags":{$regex:/mexican/i},"title":{$regex:/tacos/i}},{"title":1,"tags":1,"_id":0});
+[
+  {
+    title: 'Chicken Soft Tacos',
+    tags: [ 'mexican', 'quick', 'easy', 'chicken' ]
+  },
+  {
+    title: 'Tacos',
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ]
+  }
+]
+cooker> db.recipes.find({"tags":{$regex:/mexican/i},"tags":{$regex:/easy/i}},{"title":1,"tags":1,"_id":0});
+[
+  {
+    title: 'Chicken Soft Tacos',
+    tags: [ 'mexican', 'quick', 'easy', 'chicken' ]
+  },
+  {
+    title: 'Brown Sugar Meatloaf',
+    tags: [ 'ground beef', 'family meal', 'easy' ]
+  },
+  { title: 'Zucchini Brownies', tags: [ 'sweets', 'easy' ] },
+  {
+    title: 'Tacos',
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ]
+  }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SESSION 2
+
+
+
+
+
+
+cooker> db.examples.updateOne({"title":"Tacos"},{$inc:{"likes_count":1}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+cooker> db.examples.find({"title":"Tacos"});
+[
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ],
+    type: 'Dinner'
+  }
+]
+cooker> db.examples.updateOne({"title":"Tacos"},{$push:{"likes":60}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+cooker> db.examples.find({"title":"Tacos"});
+[
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415, 60 ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ],
+    type: 'Dinner'
+  }
+]
+cooker> db.examples.updateOne({"title":"Tacos"},{$pull:{"likes":60}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+cooker> db.examples.find({"title":"Tacos"});
+[
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ],
+    type: 'Dinner'
+  }
+]
+cooker> db.examples.updateOne({"title":"Tacos"},{$pull:{"likes":"ABC"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+cooker> db.examples.updateOne({"title":"Tacos"},{$push:{"tags":"ABC"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+cooker> db.examples.find({"title":"Tacos"});
+[
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef', 'ABC' ],
+    type: 'Dinner'
+  }
+]
+cooker> db.examples.updateOne({"title":"Tacos"},{$push:{"likes":"ABC"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+cooker> db.examples.find({"title":"Tacos"});
+[
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415, 'ABC' ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef', 'ABC' ],
+    type: 'Dinner'
+  }
+]
+cooker> db.examples.updateOne({"title":"Tacos"},{$set:{"likes_count":1}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+cooker> db.examples.find({"title":"Tacos"});
+[
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415, 'ABC' ],
+    likes_count: 1,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef', 'ABC' ],
+    type: 'Dinner'
+  }
+]
+cooker> db.examples.updateOne({"title":"Tacos"},{$set:{"likes":5}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+cooker> db.examples.find({"title":"Tacos"});
+[
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+
+cooker> db.examples.updateOne({"likes":"User_likes"},{$set:{"user_likes":10}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+cooker> db.examples.find({"likes":"user_likes"});
+
+cooker> db.examples.updateOne({"title":"tacos"},{"likes":"User_likes"},{$set:{"user_likes":10}});
+MongoInvalidArgumentError: Update document requires atomic operators
+cooker> db.examples.updateOne({"title":"Tacos"},{$rename:{"likes":"user_likes"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+cooker> db.examples.find({"title":"Tacos"});
+[
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes_count: 1,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef', 'ABC' ],
+    type: 'Dinner',
+    user_likes: 5
+  }
+]
+cooker> db.examples.deleteOne({"_id":ObjectId("5e5e9c470d33e9e8e3891b35")});
+{ acknowledged: true, deletedCount: 1 }
+cooker> db.examples.find({"title":"Tacos"});
+
+cooker> db.examples.find({},{"title":1});
+[ { _id: ObjectId("5ee69d943260aab97ea0d58d") } ]
+cooker> db.examples.find({},{"title":"Tacos"});
+[ { _id: ObjectId("5ee69d943260aab97ea0d58d"), title: 'Tacos' } ]
+cooker> db.examples.deleteOne({"_id":ObjectId("5ee69d943260aab97ea0d58d")});
+{ acknowledged: true, deletedCount: 1 }
+cooker> db.examples.find({},{"title":"Tacos"});
+
+cooker> db.examples.find({},{"title":1});
+
+cooker> db.examples.find();
+
+cooker> db.examples.find({});
+
+cooker> db.examples.find({}).count();
+0
+cooker> db.recipes.find({});
+[
+  {
+    _id: ObjectId("5e878f5220a4f574c0aa56db"),
+    title: 'Maple Smoked Salmon',
+    calories_per_serving: 286,
+    cook_time: 20,
+    desc: 'Wonderful smoked salon with maple wood',
+    directions: [
+      'Prep smoker with maple',
+      'Scale and prep fish with maple syrup',
+      'Smoke / grill until done.'
+    ],
+    ingredients: [
+      { amount: { quantity: 3, unit: 'lbs' }, name: 'salmon' },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'maple syrup' }
+    ],
+    likes: [ 1 ],
+    likes_count: 1,
+    prep_time: 15,
+    servings: 4,
+    tags: [ 'fish', 'smoked', 'grill' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5edf1cd43260aab97ea0d588"),
+    title: 'Apple Pie',
+    calories_per_serving: 384,
+    comments: [
+      {
+        body: "Solid apple pie! Well I don't mean it is actually solid I mean it is really good ... it's actually both soft and crusty. I don't mean like bad crusty, I mean like the crust is ... oh never-mind.",
+        date: ISODate("2020-09-07T18:42:30.000Z"),
+        name: 'Caderyn Jenkins',
+        user_id: 1
+      },
+      {
+        body: 'Mine is better, but this pretty good.',
+        date: ISODate("2000-02-03T18:42:30.000Z"),
+        name: 'Grace Hopper',
+        user_id: 2
+      }
+    ],
+    cook_time: 45,
+    desc: 'All American 🍏 pie',
+    directions: [
+      'Preheat oven to 425 F',
+      'Put bottom crust in pan place in refrigerator',
+      'Peal, de-core and chop apple into 1/2 to 1 inch pieces (or slice into thin pieces)',
+      'Mix flour with sugar and spices',
+      'Mix apples with flour/spice/sugar and juice from lemon',
+      'Pour into pan with bottom crust and optionally slice a few pieces of button on top',
+      'Place top crust on top and pinch sides. Cut small slits into middle of top.',
+      'Cover edges with foil around top of crust and remove durning last 20 minutes.',
+      'Bake 45 minutes.'
+    ],
+    ingredients: [
+      { amount: { quantity: 2, unit: null }, name: 'pie crusts' },
+      {
+        amount: { quantity: 6, unit: null },
+        name: 'granny smith apples'
+      },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'granulated sugar'
+      },
+      { amount: { quantity: 1, unit: 'tbsp' }, name: 'cinnamon' },
+      { amount: { quantity: 1, unit: 'tps' }, name: 'nutmeg' },
+      { amount: { quantity: 1, unit: null }, name: 'lemon' }
+    ],
+    likes: [ 2, 1, 75 ],
+    likes_count: 3,
+    prep_time: 25,
+    rating: [
+      5, 5, 5, 5, 5, 5, 5,
+      5, 5, 5, 5, 5, 5, 5,
+      5, 5, 5, 1, 5, 5
+    ],
+    rating_avg: 4.8,
+    servings: 8,
+    tags: [ 'traditional', '4th of july' ],
+    type: 'Dessert'
+  },
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos',
+    calories_per_serving: 205,
+    cook_time: 19,
+    desc: 'Mexican soft tacos',
+    directions: [
+      'Put seasoning on chicken breasts',
+      'Grill until done',
+      'Chop chicken into pieces',
+      'Put in tortillas'
+    ],
+    ingredients: [
+      { name: 'chicken breast', quantity: { amount: 1, unit: 'lbs' } },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      {
+        name: 'small flour tortillas',
+        quantity: { amount: 12, unit: 'oz' }
+      }
+    ],
+    likes: [ 261, 1, 415 ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 4, 4,
+      2, 5, 3
+    ],
+    rating_avg: 3.71,
+    servings: 5,
+    tags: [ 'mexican', 'quick', 'easy', 'chicken' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e87856d07beb474c074c5ca"),
+    title: 'Brown Sugar Meatloaf',
+    calories_per_serving: 273,
+    cook_time: 60,
+    desc: 'A sweet twist on traditional meatloaf',
+    directions: [
+      'Preheat oven to 350 F and lightly grease a 5x9 inch loaf pan.',
+      'Spread and press brown sugar to the bottom of loaf pan and spread ketchup over the sugar.',
+      'In a mixing bowl, mix remaining ingredients',
+      'Shape and press into a loaf pan (on top of the ketchup and sugar).',
+      'Bake for 1 hour.'
+    ],
+    ingredients: [
+      {
+        amount: { quantity: 0.5, unit: 'cup' },
+        name: 'packed brown sugar'
+      },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'ketchup' }
+    ],
+    likes: [ 415, 2, 75 ],
+    likes_count: 3,
+    prep_time: 12,
+    rating: [ 4, 1, 4, 4 ],
+    rating_avg: 3.25,
+    servings: 7,
+    tags: [ 'ground beef', 'family meal', 'easy' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e877cba20a4f574c0aa56da"),
+    title: 'Pancakes',
+    calories_per_serving: 232,
+    comments: [
+      {
+        body: 'I love these! They are so fluffy!',
+        date: ISODate("2000-01-03T18:42:30.000Z"),
+        name: 'Grace Hopper',
+        user_id: 2
+      }
+    ],
+    cook_time: 10,
+    desc: "Everyone's favorite pancakes",
+    directions: [
+      'Mix milk and vinegar in a medium bowl let set for 5 minutes to "sour".',
+      'Mix flour, sugar, baking powder, baking soda, and salt in a large mixing bowl.',
+      'Combine butter egg into milk.',
+      'Pour dry mixture into the wet ingredients and whisk until smooth.',
+      'Heat electric skillet to 435 F and coat with cooking spray.',
+      'Pour 1/4 cup of batter for each pancake onto the skillet, and cook until bubbles appear on the sides.',
+      'Flip and cook until browned.'
+    ],
+    ingredients: [
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'milk' },
+      {
+        amount: { quantity: 1.5, unit: 'tablespoon' },
+        name: 'white vinegar'
+      },
+      {
+        amount: { quantity: 0.5, unit: 'teaspoon' },
+        name: 'baking soda'
+      },
+      { amount: { quantity: 0.5, unit: 'teaspoon' }, name: 'salt' },
+      {
+        amount: { quantity: 2, unit: 'tablespoon' },
+        name: 'granulated sugar'
+      },
+      {
+        amount: { quantity: 1, unit: 'teaspoon' },
+        name: 'baking powder'
+      },
+      {
+        amount: { quantity: 1, unit: 'cup' },
+        name: 'all-purpose flour'
+      },
+      { amount: { quantity: 1, unit: null }, name: 'egg' },
+      { amount: { quantity: 2.5, unit: 'tablespoon' }, name: 'butter' }
+    ],
+    likes: [ 261, 415, 1, 35, 75 ],
+    likes_count: 4,
+    prep_time: 10,
+    rating: [
+      5, 4, 3, 5, 4,
+      5, 3, 1, 5
+    ],
+    rating_avg: 3.88,
+    servings: 4,
+    type: 'Breakfast'
+  },
+  {
+    _id: ObjectId("5edf1d313260aab97ea0d589"),
+    title: 'Zucchini Brownies',
+    calories_per_serving: 271,
+    cook_time: 32,
+    desc: "Don't worry, they won't turn out green",
+    directions: [
+      'Combine brownie mix with other ingredients',
+      'Bake as it says on box',
+      "Don't actually make or eat this."
+    ],
+    high_alt: {
+      add_ingredients: [ { amount: { quantity: '2', unit: 'tbsp' }, name: 'flour' } ],
+      add_time: 5
+    },
+    ingredients: [
+      { amount: { quantity: 1, unit: 'cup' }, name: 'butter' },
+      { amount: { quantity: 2, unit: null }, name: 'egg' },
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'plain yogurt' },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'shredded zucchini'
+      },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'chocolate chips (semisweet)'
+      },
+      {
+        amount: { quantity: 3, unit: 'lbs' },
+        name: 'creamy peanut butter'
+      },
+      { amount: { quantity: 1, unit: null }, name: 'brownie mix' }
+    ],
+    prep_time: 12,
+    rating: [ 1, 1, 1, 1, 5 ],
+    rating_avg: 1.8,
+    servings: 12,
+    tags: [ 'sweets', 'easy' ],
+    type: 'Dessert'
+  },
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 2,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ],
+    type: 'Dinner'
+  }
+]
+cooker> db.recipes.find().sort({"title":-1, "rating_avg":-1});
+[
+  {
+    _id: ObjectId("5edf1d313260aab97ea0d589"),
+    title: 'Zucchini Brownies',
+    calories_per_serving: 271,
+    cook_time: 32,
+    desc: "Don't worry, they won't turn out green",
+    directions: [
+      'Combine brownie mix with other ingredients',
+      'Bake as it says on box',
+      "Don't actually make or eat this."
+    ],
+    high_alt: {
+      add_ingredients: [ { amount: { quantity: '2', unit: 'tbsp' }, name: 'flour' } ],
+      add_time: 5
+    },
+    ingredients: [
+      { amount: { quantity: 1, unit: 'cup' }, name: 'butter' },
+      { amount: { quantity: 2, unit: null }, name: 'egg' },
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'plain yogurt' },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'shredded zucchini'
+      },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'chocolate chips (semisweet)'
+      },
+      {
+        amount: { quantity: 3, unit: 'lbs' },
+        name: 'creamy peanut butter'
+      },
+      { amount: { quantity: 1, unit: null }, name: 'brownie mix' }
+    ],
+    prep_time: 12,
+    rating: [ 1, 1, 1, 1, 5 ],
+    rating_avg: 1.8,
+    servings: 12,
+    tags: [ 'sweets', 'easy' ],
+    type: 'Dessert'
+  },
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 2,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e877cba20a4f574c0aa56da"),
+    title: 'Pancakes',
+    calories_per_serving: 232,
+    comments: [
+      {
+        body: 'I love these! They are so fluffy!',
+        date: ISODate("2000-01-03T18:42:30.000Z"),
+        name: 'Grace Hopper',
+        user_id: 2
+      }
+    ],
+    cook_time: 10,
+    desc: "Everyone's favorite pancakes",
+    directions: [
+      'Mix milk and vinegar in a medium bowl let set for 5 minutes to "sour".',
+      'Mix flour, sugar, baking powder, baking soda, and salt in a large mixing bowl.',
+      'Combine butter egg into milk.',
+      'Pour dry mixture into the wet ingredients and whisk until smooth.',
+      'Heat electric skillet to 435 F and coat with cooking spray.',
+      'Pour 1/4 cup of batter for each pancake onto the skillet, and cook until bubbles appear on the sides.',
+      'Flip and cook until browned.'
+    ],
+    ingredients: [
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'milk' },
+      {
+        amount: { quantity: 1.5, unit: 'tablespoon' },
+        name: 'white vinegar'
+      },
+      {
+        amount: { quantity: 0.5, unit: 'teaspoon' },
+        name: 'baking soda'
+      },
+      { amount: { quantity: 0.5, unit: 'teaspoon' }, name: 'salt' },
+      {
+        amount: { quantity: 2, unit: 'tablespoon' },
+        name: 'granulated sugar'
+      },
+      {
+        amount: { quantity: 1, unit: 'teaspoon' },
+        name: 'baking powder'
+      },
+      {
+        amount: { quantity: 1, unit: 'cup' },
+        name: 'all-purpose flour'
+      },
+      { amount: { quantity: 1, unit: null }, name: 'egg' },
+      { amount: { quantity: 2.5, unit: 'tablespoon' }, name: 'butter' }
+    ],
+    likes: [ 261, 415, 1, 35, 75 ],
+    likes_count: 4,
+    prep_time: 10,
+    rating: [
+      5, 4, 3, 5, 4,
+      5, 3, 1, 5
+    ],
+    rating_avg: 3.88,
+    servings: 4,
+    type: 'Breakfast'
+  },
+  {
+    _id: ObjectId("5e878f5220a4f574c0aa56db"),
+    title: 'Maple Smoked Salmon',
+    calories_per_serving: 286,
+    cook_time: 20,
+    desc: 'Wonderful smoked salon with maple wood',
+    directions: [
+      'Prep smoker with maple',
+      'Scale and prep fish with maple syrup',
+      'Smoke / grill until done.'
+    ],
+    ingredients: [
+      { amount: { quantity: 3, unit: 'lbs' }, name: 'salmon' },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'maple syrup' }
+    ],
+    likes: [ 1 ],
+    likes_count: 1,
+    prep_time: 15,
+    servings: 4,
+    tags: [ 'fish', 'smoked', 'grill' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos',
+    calories_per_serving: 205,
+    cook_time: 19,
+    desc: 'Mexican soft tacos',
+    directions: [
+      'Put seasoning on chicken breasts',
+      'Grill until done',
+      'Chop chicken into pieces',
+      'Put in tortillas'
+    ],
+    ingredients: [
+      { name: 'chicken breast', quantity: { amount: 1, unit: 'lbs' } },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      {
+        name: 'small flour tortillas',
+        quantity: { amount: 12, unit: 'oz' }
+      }
+    ],
+    likes: [ 261, 1, 415 ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 4, 4,
+      2, 5, 3
+    ],
+    rating_avg: 3.71,
+    servings: 5,
+    tags: [ 'mexican', 'quick', 'easy', 'chicken' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e87856d07beb474c074c5ca"),
+    title: 'Brown Sugar Meatloaf',
+    calories_per_serving: 273,
+    cook_time: 60,
+    desc: 'A sweet twist on traditional meatloaf',
+    directions: [
+      'Preheat oven to 350 F and lightly grease a 5x9 inch loaf pan.',
+      'Spread and press brown sugar to the bottom of loaf pan and spread ketchup over the sugar.',
+      'In a mixing bowl, mix remaining ingredients',
+      'Shape and press into a loaf pan (on top of the ketchup and sugar).',
+      'Bake for 1 hour.'
+    ],
+    ingredients: [
+      {
+        amount: { quantity: 0.5, unit: 'cup' },
+        name: 'packed brown sugar'
+      },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'ketchup' }
+    ],
+    likes: [ 415, 2, 75 ],
+    likes_count: 3,
+    prep_time: 12,
+    rating: [ 4, 1, 4, 4 ],
+    rating_avg: 3.25,
+    servings: 7,
+    tags: [ 'ground beef', 'family meal', 'easy' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5edf1cd43260aab97ea0d588"),
+    title: 'Apple Pie',
+    calories_per_serving: 384,
+    comments: [
+      {
+        body: "Solid apple pie! Well I don't mean it is actually solid I mean it is really good ... it's actually both soft and crusty. I don't mean like bad crusty, I mean like the crust is ... oh never-mind.",
+        date: ISODate("2020-09-07T18:42:30.000Z"),
+        name: 'Caderyn Jenkins',
+        user_id: 1
+      },
+      {
+        body: 'Mine is better, but this pretty good.',
+        date: ISODate("2000-02-03T18:42:30.000Z"),
+        name: 'Grace Hopper',
+        user_id: 2
+      }
+    ],
+    cook_time: 45,
+
+cooker> db.recipes.find().sort({"title":1, "rating_avg":-1});
+[
+  {
+    _id: ObjectId("5edf1cd43260aab97ea0d588"),
+    title: 'Apple Pie',
+    calories_per_serving: 384,
+    comments: [
+      {
+        body: "Solid apple pie! Well I don't mean it is actually solid I mean it is really good ... it's actually both soft and crusty. I don't mean like bad crusty, I mean like the crust is ... oh never-mind.",
+        date: ISODate("2020-09-07T18:42:30.000Z"),
+        name: 'Caderyn Jenkins',
+        user_id: 1
+      },
+      {
+        body: 'Mine is better, but this pretty good.',
+        date: ISODate("2000-02-03T18:42:30.000Z"),
+        name: 'Grace Hopper',
+        user_id: 2
+      }
+    ],
+    cook_time: 45,
+    desc: 'All American 🍏 pie',
+    directions: [
+      'Preheat oven to 425 F',
+      'Put bottom crust in pan place in refrigerator',
+      'Peal, de-core and chop apple into 1/2 to 1 inch pieces (or slice into thin pieces)',
+      'Mix flour with sugar and spices',
+      'Mix apples with flour/spice/sugar and juice from lemon',
+      'Pour into pan with bottom crust and optionally slice a few pieces of button on top',
+      'Place top crust on top and pinch sides. Cut small slits into middle of top.',
+      'Cover edges with foil around top of crust and remove durning last 20 minutes.',
+      'Bake 45 minutes.'
+    ],
+    ingredients: [
+      { amount: { quantity: 2, unit: null }, name: 'pie crusts' },
+      {
+        amount: { quantity: 6, unit: null },
+        name: 'granny smith apples'
+      },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'granulated sugar'
+      },
+      { amount: { quantity: 1, unit: 'tbsp' }, name: 'cinnamon' },
+      { amount: { quantity: 1, unit: 'tps' }, name: 'nutmeg' },
+      { amount: { quantity: 1, unit: null }, name: 'lemon' }
+    ],
+    likes: [ 2, 1, 75 ],
+    likes_count: 3,
+    prep_time: 25,
+    rating: [
+      5, 5, 5, 5, 5, 5, 5,
+      5, 5, 5, 5, 5, 5, 5,
+      5, 5, 5, 1, 5, 5
+    ],
+    rating_avg: 4.8,
+    servings: 8,
+    tags: [ 'traditional', '4th of july' ],
+    type: 'Dessert'
+  },
+  {
+    _id: ObjectId("5e87856d07beb474c074c5ca"),
+    title: 'Brown Sugar Meatloaf',
+    calories_per_serving: 273,
+    cook_time: 60,
+    desc: 'A sweet twist on traditional meatloaf',
+    directions: [
+      'Preheat oven to 350 F and lightly grease a 5x9 inch loaf pan.',
+      'Spread and press brown sugar to the bottom of loaf pan and spread ketchup over the sugar.',
+      'In a mixing bowl, mix remaining ingredients',
+      'Shape and press into a loaf pan (on top of the ketchup and sugar).',
+      'Bake for 1 hour.'
+    ],
+    ingredients: [
+      {
+        amount: { quantity: 0.5, unit: 'cup' },
+        name: 'packed brown sugar'
+      },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'ketchup' }
+    ],
+    likes: [ 415, 2, 75 ],
+    likes_count: 3,
+    prep_time: 12,
+    rating: [ 4, 1, 4, 4 ],
+    rating_avg: 3.25,
+    servings: 7,
+    tags: [ 'ground beef', 'family meal', 'easy' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos',
+    calories_per_serving: 205,
+    cook_time: 19,
+    desc: 'Mexican soft tacos',
+    directions: [
+      'Put seasoning on chicken breasts',
+      'Grill until done',
+      'Chop chicken into pieces',
+      'Put in tortillas'
+    ],
+    ingredients: [
+      { name: 'chicken breast', quantity: { amount: 1, unit: 'lbs' } },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      {
+        name: 'small flour tortillas',
+        quantity: { amount: 12, unit: 'oz' }
+      }
+    ],
+    likes: [ 261, 1, 415 ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 4, 4,
+      2, 5, 3
+    ],
+    rating_avg: 3.71,
+    servings: 5,
+    tags: [ 'mexican', 'quick', 'easy', 'chicken' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e878f5220a4f574c0aa56db"),
+    title: 'Maple Smoked Salmon',
+    calories_per_serving: 286,
+    cook_time: 20,
+    desc: 'Wonderful smoked salon with maple wood',
+    directions: [
+      'Prep smoker with maple',
+      'Scale and prep fish with maple syrup',
+      'Smoke / grill until done.'
+    ],
+    ingredients: [
+      { amount: { quantity: 3, unit: 'lbs' }, name: 'salmon' },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'maple syrup' }
+    ],
+    likes: [ 1 ],
+    likes_count: 1,
+    prep_time: 15,
+    servings: 4,
+    tags: [ 'fish', 'smoked', 'grill' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e877cba20a4f574c0aa56da"),
+    title: 'Pancakes',
+    calories_per_serving: 232,
+    comments: [
+      {
+        body: 'I love these! They are so fluffy!',
+        date: ISODate("2000-01-03T18:42:30.000Z"),
+        name: 'Grace Hopper',
+        user_id: 2
+      }
+    ],
+    cook_time: 10,
+    desc: "Everyone's favorite pancakes",
+    directions: [
+      'Mix milk and vinegar in a medium bowl let set for 5 minutes to "sour".',
+      'Mix flour, sugar, baking powder, baking soda, and salt in a large mixing bowl.',
+      'Combine butter egg into milk.',
+      'Pour dry mixture into the wet ingredients and whisk until smooth.',
+      'Heat electric skillet to 435 F and coat with cooking spray.',
+      'Pour 1/4 cup of batter for each pancake onto the skillet, and cook until bubbles appear on the sides.',
+      'Flip and cook until browned.'
+    ],
+    ingredients: [
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'milk' },
+      {
+        amount: { quantity: 1.5, unit: 'tablespoon' },
+        name: 'white vinegar'
+      },
+      {
+        amount: { quantity: 0.5, unit: 'teaspoon' },
+        name: 'baking soda'
+      },
+      { amount: { quantity: 0.5, unit: 'teaspoon' }, name: 'salt' },
+      {
+        amount: { quantity: 2, unit: 'tablespoon' },
+        name: 'granulated sugar'
+      },
+      {
+        amount: { quantity: 1, unit: 'teaspoon' },
+        name: 'baking powder'
+      },
+      {
+        amount: { quantity: 1, unit: 'cup' },
+        name: 'all-purpose flour'
+      },
+      { amount: { quantity: 1, unit: null }, name: 'egg' },
+      { amount: { quantity: 2.5, unit: 'tablespoon' }, name: 'butter' }
+    ],
+    likes: [ 261, 415, 1, 35, 75 ],
+    likes_count: 4,
+    prep_time: 10,
+    rating: [
+      5, 4, 3, 5, 4,
+      5, 3, 1, 5
+    ],
+    rating_avg: 3.88,
+    servings: 4,
+    type: 'Breakfast'
+  },
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 2,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5edf1d313260aab97ea0d589"),
+    title: 'Zucchini Brownies',
+    calories_per_serving: 271,
+    cook_time: 32,
+    desc: "Don't worry, they won't turn out green",
+    directions: [
+      'Combine brownie mix with other ingredients',
+      'Bake as it says on box',
+      "Don't actually make or eat this."
+    ],
+    high_alt: {
+      add_ingredients: [ { amount: { quantity: '2', unit: 'tbsp' }, name: 'flour' } ],
+      add_time: 5
+    },
+    ingredients: [
+      { amount: { quantity: 1, unit: 'cup' }, name: 'butter' },
+      { amount: { quantity: 2, unit: null }, name: 'egg' },
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'plain yogurt' },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'shredded zucchini'
+      },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'chocolate chips (semisweet)'
+      },
+      {
+        amount: { quantity: 3, unit: 'lbs' },
+        name: 'creamy peanut butter'
+      },
+      { amount: { quantity: 1, unit: null }, name: 'brownie mix' }
+    ],
+    prep_time: 12,
+    rating: [ 1, 1, 1, 1, 5 ],
+    rating_avg: 1.8,
+    servings: 12,
+    tags: [ 'sweets', 'easy' ],
+    type: 'Dessert'
+  }
+]
+cooker> db.recipes.find().sort({"rating_avg":-1});
+[
+  {
+    _id: ObjectId("5edf1cd43260aab97ea0d588"),
+    title: 'Apple Pie',
+    calories_per_serving: 384,
+    comments: [
+      {
+        body: "Solid apple pie! Well I don't mean it is actually solid I mean it is really good ... it's actually both soft and crusty. I don't mean like bad crusty, I mean like the crust is ... oh never-mind.",
+        date: ISODate("2020-09-07T18:42:30.000Z"),
+        name: 'Caderyn Jenkins',
+        user_id: 1
+      },
+      {
+        body: 'Mine is better, but this pretty good.',
+        date: ISODate("2000-02-03T18:42:30.000Z"),
+        name: 'Grace Hopper',
+        user_id: 2
+      }
+    ],
+    cook_time: 45,
+    desc: 'All American 🍏 pie',
+    directions: [
+      'Preheat oven to 425 F',
+      'Put bottom crust in pan place in refrigerator',
+      'Peal, de-core and chop apple into 1/2 to 1 inch pieces (or slice into thin pieces)',
+      'Mix flour with sugar and spices',
+      'Mix apples with flour/spice/sugar and juice from lemon',
+      'Pour into pan with bottom crust and optionally slice a few pieces of button on top',
+      'Place top crust on top and pinch sides. Cut small slits into middle of top.',
+      'Cover edges with foil around top of crust and remove durning last 20 minutes.',
+      'Bake 45 minutes.'
+    ],
+    ingredients: [
+      { amount: { quantity: 2, unit: null }, name: 'pie crusts' },
+      {
+        amount: { quantity: 6, unit: null },
+        name: 'granny smith apples'
+      },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'granulated sugar'
+      },
+      { amount: { quantity: 1, unit: 'tbsp' }, name: 'cinnamon' },
+      { amount: { quantity: 1, unit: 'tps' }, name: 'nutmeg' },
+      { amount: { quantity: 1, unit: null }, name: 'lemon' }
+    ],
+    likes: [ 2, 1, 75 ],
+    likes_count: 3,
+    prep_time: 25,
+    rating: [
+      5, 5, 5, 5, 5, 5, 5,
+      5, 5, 5, 5, 5, 5, 5,
+      5, 5, 5, 1, 5, 5
+    ],
+    rating_avg: 4.8,
+    servings: 8,
+    tags: [ 'traditional', '4th of july' ],
+    type: 'Dessert'
+  },
+  {
+    _id: ObjectId("5e877cba20a4f574c0aa56da"),
+    title: 'Pancakes',
+    calories_per_serving: 232,
+    comments: [
+      {
+        body: 'I love these! They are so fluffy!',
+        date: ISODate("2000-01-03T18:42:30.000Z"),
+        name: 'Grace Hopper',
+        user_id: 2
+      }
+    ],
+    cook_time: 10,
+    desc: "Everyone's favorite pancakes",
+    directions: [
+      'Mix milk and vinegar in a medium bowl let set for 5 minutes to "sour".',
+      'Mix flour, sugar, baking powder, baking soda, and salt in a large mixing bowl.',
+      'Combine butter egg into milk.',
+      'Pour dry mixture into the wet ingredients and whisk until smooth.',
+      'Heat electric skillet to 435 F and coat with cooking spray.',
+      'Pour 1/4 cup of batter for each pancake onto the skillet, and cook until bubbles appear on the sides.',
+      'Flip and cook until browned.'
+    ],
+    ingredients: [
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'milk' },
+      {
+        amount: { quantity: 1.5, unit: 'tablespoon' },
+        name: 'white vinegar'
+      },
+      {
+        amount: { quantity: 0.5, unit: 'teaspoon' },
+        name: 'baking soda'
+      },
+      { amount: { quantity: 0.5, unit: 'teaspoon' }, name: 'salt' },
+      {
+        amount: { quantity: 2, unit: 'tablespoon' },
+        name: 'granulated sugar'
+      },
+      {
+        amount: { quantity: 1, unit: 'teaspoon' },
+        name: 'baking powder'
+      },
+      {
+        amount: { quantity: 1, unit: 'cup' },
+        name: 'all-purpose flour'
+      },
+      { amount: { quantity: 1, unit: null }, name: 'egg' },
+      { amount: { quantity: 2.5, unit: 'tablespoon' }, name: 'butter' }
+    ],
+    likes: [ 261, 415, 1, 35, 75 ],
+    likes_count: 4,
+    prep_time: 10,
+    rating: [
+      5, 4, 3, 5, 4,
+      5, 3, 1, 5
+    ],
+    rating_avg: 3.88,
+    servings: 4,
+    type: 'Breakfast'
+  },
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos',
+    calories_per_serving: 205,
+    cook_time: 19,
+    desc: 'Mexican soft tacos',
+    directions: [
+      'Put seasoning on chicken breasts',
+      'Grill until done',
+      'Chop chicken into pieces',
+      'Put in tortillas'
+    ],
+    ingredients: [
+      { name: 'chicken breast', quantity: { amount: 1, unit: 'lbs' } },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      {
+        name: 'small flour tortillas',
+        quantity: { amount: 12, unit: 'oz' }
+      }
+    ],
+    likes: [ 261, 1, 415 ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 4, 4,
+      2, 5, 3
+    ],
+    rating_avg: 3.71,
+    servings: 5,
+    tags: [ 'mexican', 'quick', 'easy', 'chicken' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 2,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e87856d07beb474c074c5ca"),
+    title: 'Brown Sugar Meatloaf',
+    calories_per_serving: 273,
+    cook_time: 60,
+    desc: 'A sweet twist on traditional meatloaf',
+    directions: [
+      'Preheat oven to 350 F and lightly grease a 5x9 inch loaf pan.',
+      'Spread and press brown sugar to the bottom of loaf pan and spread ketchup over the sugar.',
+      'In a mixing bowl, mix remaining ingredients',
+      'Shape and press into a loaf pan (on top of the ketchup and sugar).',
+      'Bake for 1 hour.'
+    ],
+    ingredients: [
+      {
+        amount: { quantity: 0.5, unit: 'cup' },
+        name: 'packed brown sugar'
+      },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'ketchup' }
+    ],
+    likes: [ 415, 2, 75 ],
+    likes_count: 3,
+    prep_time: 12,
+    rating: [ 4, 1, 4, 4 ],
+    rating_avg: 3.25,
+    servings: 7,
+    tags: [ 'ground beef', 'family meal', 'easy' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5edf1d313260aab97ea0d589"),
+    title: 'Zucchini Brownies',
+    calories_per_serving: 271,
+    cook_time: 32,
+    desc: "Don't worry, they won't turn out green",
+    directions: [
+      'Combine brownie mix with other ingredients',
+      'Bake as it says on box',
+      "Don't actually make or eat this."
+    ],
+    high_alt: {
+      add_ingredients: [ { amount: { quantity: '2', unit: 'tbsp' }, name: 'flour' } ],
+      add_time: 5
+    },
+    ingredients: [
+      { amount: { quantity: 1, unit: 'cup' }, name: 'butter' },
+      { amount: { quantity: 2, unit: null }, name: 'egg' },
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'plain yogurt' },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'shredded zucchini'
+      },
+      {
+
+cooker> db.recipes.find({"title":1, "rating_avg":1}).sort({"rating_avg":-1});
+
+cooker> db.recipes.find({},{"title":1, "rating_avg":1}).sort({"rating_avg":-1});
+[
+  {
+    _id: ObjectId("5edf1cd43260aab97ea0d588"),
+    title: 'Apple Pie',
+    rating_avg: 4.8
+  },
+  {
+    _id: ObjectId("5e877cba20a4f574c0aa56da"),
+    title: 'Pancakes',
+    rating_avg: 3.88
+  },
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos',
+    rating_avg: 3.71
+  },
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    rating_avg: 3.5
+  },
+  {
+    _id: ObjectId("5e87856d07beb474c074c5ca"),
+    title: 'Brown Sugar Meatloaf',
+    rating_avg: 3.25
+  },
+  {
+
+cooker> db.recipes.find({"title":1, "tags":"Mexican"}).sort({"likes_count":-1}).limit(4);
+
+cooker> db.recipes.find({"tags":"Mexican"},{"title":1, "tags":1}).sort({"likes_count":-1}).limit(4);
+
+cooker> db.recipes.find({"tags":"mexican"},{"title":1, "tags":1}).sort({"likes_count":-1}).limit(4);
+[
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos',
+    tags: [ 'mexican', 'quick', 'easy', 'chicken' ]
+  },
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ]
+  }
+]
+cooker> db.recipes.find({"likes":1},{"title":1, "likes":1}).sort({"title":1});
+[
+  {
+    _id: ObjectId("5edf1cd43260aab97ea0d588"),
+    title: 'Apple Pie',
+    likes: [ 2, 1, 75 ]
+  },
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos',
+    likes: [ 261, 1, 415 ]
+  },
+  {
+    _id: ObjectId("5e878f5220a4f574c0aa56db"),
+    title: 'Maple Smoked Salmon',
+    likes: [ 1 ]
+  },
+
+cooker> db.recipes.createIndex.help();
+
+  db.coll.createIndex({ category: 1 }, { name: 'index-1' }):
+
+  Creates one index on a collection
+
+  For more information on usage: https://docs.mongodb.com/manual/reference/method/db.collection.createIndex
+cooker> db.recipes.find({},{title:1,prep_time:1}).toArray();
+[
+  {
+    _id: ObjectId("5e878f5220a4f574c0aa56db"),
+    title: 'Maple Smoked Salmon',
+    prep_time: 15
+  },
+  {
+    _id: ObjectId("5edf1cd43260aab97ea0d588"),
+    title: 'Apple Pie',
+    prep_time: 25
+  },
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos',
+    prep_time: 10
+  },
+  {
+    _id: ObjectId("5e87856d07beb474c074c5ca"),
+    title: 'Brown Sugar Meatloaf',
+    prep_time: 12
+  },
+  {
+    _id: ObjectId("5e877cba20a4f574c0aa56da"),
+    title: 'Pancakes',
+    prep_time: 10
+  },
+  {
+    _id: ObjectId("5edf1d313260aab97ea0d589"),
+    title: 'Zucchini Brownies',
+    prep_time: 12
+  },
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    prep_time: 10
+  }
+]
+cooker> console.table(results);
+ReferenceError: results is not defined
+cooker> const results = db.recipes.find({},{title:1,prep_time:1}).toArray();
+
+cooker> console.table(results);
+┌─────────┬──────────────────────────────────────┬────────────────────────┬───────────┐
+│ (index) │                 _id                  │         title          │ prep_time │
+├─────────┼──────────────────────────────────────┼────────────────────────┼───────────┤
+│    0    │ ObjectId("5e878f5220a4f574c0aa56db") │ 'Maple Smoked Salmon'  │    15     │
+│    1    │ ObjectId("5edf1cd43260aab97ea0d588") │      'Apple Pie'       │    25     │
+│    2    │ ObjectId("5e6fd805fa98021236426a24") │  'Chicken Soft Tacos'  │    10     │
+│    3    │ ObjectId("5e87856d07beb474c074c5ca") │ 'Brown Sugar Meatloaf' │    12     │
+│    4    │ ObjectId("5e877cba20a4f574c0aa56da") │       'Pancakes'       │    10     │
+│    5    │ ObjectId("5edf1d313260aab97ea0d589") │  'Zucchini Brownies'   │    12     │
+│    6    │ ObjectId("5e5e9c470d33e9e8e3891b35") │        'Tacos'         │    10     │
+└─────────┴──────────────────────────────────────┴────────────────────────┴───────────┘
+
+cooker> db.recipes.getIndexes();
+[ { v: 2, key: { _id: 1 }, name: '_id_' } ]
+cooker>
+
+cooker> db.recipes.createIndex({"cook_time":-1});
+cook_time_-1
+cooker> db.recipes.getIndexes();
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { cook_time: -1 }, name: 'cook_time_-1' }
+]
+cooker> db.recipes.find({"cook_time":10},{title:1}).explain("executionStats");
+{
+  explainVersion: '1',
+  queryPlanner: {
+    namespace: 'cooker.recipes',
+    indexFilterSet: false,
+    parsedQuery: { cook_time: { '$eq': 10 } },
+    queryHash: 'C4D3C174',
+    planCacheKey: '1A1F72B0',
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    winningPlan: {
+      stage: 'PROJECTION_SIMPLE',
+      transformBy: { title: 1 },
+      inputStage: {
+        stage: 'FETCH',
+        inputStage: {
+          stage: 'IXSCAN',
+          keyPattern: { cook_time: -1 },
+          indexName: 'cook_time_-1',
+          isMultiKey: false,
+          multiKeyPaths: { cook_time: [] },
+          isUnique: false,
+          isSparse: false,
+          isPartial: false,
+          indexVersion: 2,
+          direction: 'forward',
+          indexBounds: { cook_time: [ '[10, 10]' ] }
+        }
+      }
+    },
+    rejectedPlans: []
+  },
+  executionStats: {
+    executionSuccess: true,
+    nReturned: 1,
+    executionTimeMillis: 18,
+    totalKeysExamined: 1,
+    totalDocsExamined: 1,
+    executionStages: {
+      stage: 'PROJECTION_SIMPLE',
+      nReturned: 1,
+      executionTimeMillisEstimate: 0,
+      works: 2,
+      advanced: 1,
+      needTime: 0,
+      needYield: 0,
+      saveState: 0,
+      restoreState: 0,
+      isEOF: 1,
+      transformBy: { title: 1 },
+      inputStage: {
+        stage: 'FETCH',
+        nReturned: 1,
+        executionTimeMillisEstimate: 0,
+        works: 2,
+        advanced: 1,
+        needTime: 0,
+        needYield: 0,
+        saveState: 0,
+        restoreState: 0,
+        isEOF: 1,
+        docsExamined: 1,
+        alreadyHasObj: 0,
+        inputStage: {
+          stage: 'IXSCAN',
+          nReturned: 1,
+          executionTimeMillisEstimate: 0,
+          works: 2,
+          advanced: 1,
+          needTime: 0,
+          needYield: 0,
+          saveState: 0,
+          restoreState: 0,
+          isEOF: 1,
+          keyPattern: { cook_time: -1 },
+          indexName: 'cook_time_-1',
+          isMultiKey: false,
+          multiKeyPaths: { cook_time: [] },
+          isUnique: false,
+          isSparse: false,
+          isPartial: false,
+          indexVersion: 2,
+          direction: 'forward',
+          indexBounds: { cook_time: [ '[10, 10]' ] },
+          keysExamined: 1,
+          seeks: 1,
+          dupsTested: 0,
+          dupsDropped: 0
+        }
+      }
+    }
+  },
+  command: {
+    find: 'recipes',
+    filter: { cook_time: 10 },
+    projection: { title: 1 },
+    '$db': 'cooker'
+  },
+  serverInfo: {
+    host: 'XW5CHPXW3',
+    port: 27017,
+    version: '6.0.8',
+    gitVersion: '3d84c0dd4e5d99be0d69003652313e7eaf4cdd74'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600
+  },
+  ok: 1
+}
+cooker> db.recipes.dropIndex({"cook_time":-1});
+{ nIndexesWas: 2, ok: 1 }
+cooker> db.recipes.aggregate([{$match:{cook_time:{$gt:30}}}]);
+[
+  {
+    _id: ObjectId("5edf1cd43260aab97ea0d588"),
+    title: 'Apple Pie',
+    calories_per_serving: 384,
+    comments: [
+      {
+        body: "Solid apple pie! Well I don't mean it is actually solid I mean it is really good ... it's actually both soft and crusty. I don't mean like bad crusty, I mean like the crust is ... oh never-mind.",
+        date: ISODate("2020-09-07T18:42:30.000Z"),
+        name: 'Caderyn Jenkins',
+        user_id: 1
+      },
+      {
+        body: 'Mine is better, but this pretty good.',
+        date: ISODate("2000-02-03T18:42:30.000Z"),
+        name: 'Grace Hopper',
+        user_id: 2
+      }
+    ],
+    cook_time: 45,
+    desc: 'All American 🍏 pie',
+    directions: [
+      'Preheat oven to 425 F',
+      'Put bottom crust in pan place in refrigerator',
+      'Peal, de-core and chop apple into 1/2 to 1 inch pieces (or slice into thin pieces)',
+      'Mix flour with sugar and spices',
+      'Mix apples with flour/spice/sugar and juice from lemon',
+      'Pour into pan with bottom crust and optionally slice a few pieces of button on top',
+      'Place top crust on top and pinch sides. Cut small slits into middle of top.',
+      'Cover edges with foil around top of crust and remove durning last 20 minutes.',
+      'Bake 45 minutes.'
+    ],
+    ingredients: [
+      { amount: { quantity: 2, unit: null }, name: 'pie crusts' },
+      {
+        amount: { quantity: 6, unit: null },
+        name: 'granny smith apples'
+      },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'granulated sugar'
+      },
+      { amount: { quantity: 1, unit: 'tbsp' }, name: 'cinnamon' },
+      { amount: { quantity: 1, unit: 'tps' }, name: 'nutmeg' },
+      { amount: { quantity: 1, unit: null }, name: 'lemon' }
+    ],
+    likes: [ 2, 1, 75 ],
+    likes_count: 3,
+    prep_time: 25,
+    rating: [
+      5, 5, 5, 5, 5, 5, 5,
+      5, 5, 5, 5, 5, 5, 5,
+      5, 5, 5, 1, 5, 5
+    ],
+    rating_avg: 4.8,
+    servings: 8,
+    tags: [ 'traditional', '4th of july' ],
+    type: 'Dessert'
+  },
+  {
+    _id: ObjectId("5e87856d07beb474c074c5ca"),
+    title: 'Brown Sugar Meatloaf',
+    calories_per_serving: 273,
+    cook_time: 60,
+    desc: 'A sweet twist on traditional meatloaf',
+    directions: [
+      'Preheat oven to 350 F and lightly grease a 5x9 inch loaf pan.',
+      'Spread and press brown sugar to the bottom of loaf pan and spread ketchup over the sugar.',
+      'In a mixing bowl, mix remaining ingredients',
+      'Shape and press into a loaf pan (on top of the ketchup and sugar).',
+      'Bake for 1 hour.'
+    ],
+    ingredients: [
+      {
+        amount: { quantity: 0.5, unit: 'cup' },
+        name: 'packed brown sugar'
+      },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'ketchup' }
+    ],
+    likes: [ 415, 2, 75 ],
+    likes_count: 3,
+    prep_time: 12,
+    rating: [ 4, 1, 4, 4 ],
+    rating_avg: 3.25,
+    servings: 7,
+    tags: [ 'ground beef', 'family meal', 'easy' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5edf1d313260aab97ea0d589"),
+    title: 'Zucchini Brownies',
+    calories_per_serving: 271,
+    cook_time: 32,
+    desc: "Don't worry, they won't turn out green",
+    directions: [
+      'Combine brownie mix with other ingredients',
+      'Bake as it says on box',
+      "Don't actually make or eat this."
+    ],
+    high_alt: {
+      add_ingredients: [ { amount: { quantity: '2', unit: 'tbsp' }, name: 'flour' } ],
+      add_time: 5
+    },
+    ingredients: [
+      { amount: { quantity: 1, unit: 'cup' }, name: 'butter' },
+      { amount: { quantity: 2, unit: null }, name: 'egg' },
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'plain yogurt' },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'shredded zucchini'
+      },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'chocolate chips (semisweet)'
+      },
+      {
+        amount: { quantity: 3, unit: 'lbs' },
+        name: 'creamy peanut butter'
+      },
+      { amount: { quantity: 1, unit: null }, name: 'brownie mix' }
+    ],
+    prep_time: 12,
+    rating: [ 1, 1, 1, 1, 5 ],
+    rating_avg: 1.8,
+    servings: 12,
+    tags: [ 'sweets', 'easy' ],
+    type: 'Dessert'
+  }
+]
+cooker> db.recipes.aggregate([{'$sort':{'title':1}}]);
+[
+  {
+    _id: ObjectId("5edf1cd43260aab97ea0d588"),
+    title: 'Apple Pie',
+    calories_per_serving: 384,
+    comments: [
+      {
+        body: "Solid apple pie! Well I don't mean it is actually solid I mean it is really good ... it's actually both soft and crusty. I don't mean like bad crusty, I mean like the crust is ... oh never-mind.",
+        date: ISODate("2020-09-07T18:42:30.000Z"),
+        name: 'Caderyn Jenkins',
+        user_id: 1
+      },
+      {
+        body: 'Mine is better, but this pretty good.',
+        date: ISODate("2000-02-03T18:42:30.000Z"),
+        name: 'Grace Hopper',
+        user_id: 2
+      }
+    ],
+    cook_time: 45,
+    desc: 'All American 🍏 pie',
+    directions: [
+      'Preheat oven to 425 F',
+      'Put bottom crust in pan place in refrigerator',
+      'Peal, de-core and chop apple into 1/2 to 1 inch pieces (or slice into thin pieces)',
+      'Mix flour with sugar and spices',
+      'Mix apples with flour/spice/sugar and juice from lemon',
+      'Pour into pan with bottom crust and optionally slice a few pieces of button on top',
+      'Place top crust on top and pinch sides. Cut small slits into middle of top.',
+      'Cover edges with foil around top of crust and remove durning last 20 minutes.',
+      'Bake 45 minutes.'
+    ],
+    ingredients: [
+      { amount: { quantity: 2, unit: null }, name: 'pie crusts' },
+      {
+        amount: { quantity: 6, unit: null },
+        name: 'granny smith apples'
+      },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'granulated sugar'
+      },
+      { amount: { quantity: 1, unit: 'tbsp' }, name: 'cinnamon' },
+      { amount: { quantity: 1, unit: 'tps' }, name: 'nutmeg' },
+      { amount: { quantity: 1, unit: null }, name: 'lemon' }
+    ],
+    likes: [ 2, 1, 75 ],
+    likes_count: 3,
+    prep_time: 25,
+    rating: [
+      5, 5, 5, 5, 5, 5, 5,
+      5, 5, 5, 5, 5, 5, 5,
+      5, 5, 5, 1, 5, 5
+    ],
+    rating_avg: 4.8,
+    servings: 8,
+    tags: [ 'traditional', '4th of july' ],
+    type: 'Dessert'
+  },
+  {
+    _id: ObjectId("5e87856d07beb474c074c5ca"),
+    title: 'Brown Sugar Meatloaf',
+    calories_per_serving: 273,
+    cook_time: 60,
+    desc: 'A sweet twist on traditional meatloaf',
+    directions: [
+      'Preheat oven to 350 F and lightly grease a 5x9 inch loaf pan.',
+      'Spread and press brown sugar to the bottom of loaf pan and spread ketchup over the sugar.',
+      'In a mixing bowl, mix remaining ingredients',
+      'Shape and press into a loaf pan (on top of the ketchup and sugar).',
+      'Bake for 1 hour.'
+    ],
+    ingredients: [
+      {
+        amount: { quantity: 0.5, unit: 'cup' },
+        name: 'packed brown sugar'
+      },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'ketchup' }
+    ],
+    likes: [ 415, 2, 75 ],
+    likes_count: 3,
+    prep_time: 12,
+    rating: [ 4, 1, 4, 4 ],
+    rating_avg: 3.25,
+    servings: 7,
+    tags: [ 'ground beef', 'family meal', 'easy' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos',
+    calories_per_serving: 205,
+    cook_time: 19,
+    desc: 'Mexican soft tacos',
+    directions: [
+      'Put seasoning on chicken breasts',
+      'Grill until done',
+      'Chop chicken into pieces',
+      'Put in tortillas'
+    ],
+    ingredients: [
+      { name: 'chicken breast', quantity: { amount: 1, unit: 'lbs' } },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      {
+        name: 'small flour tortillas',
+        quantity: { amount: 12, unit: 'oz' }
+      }
+    ],
+    likes: [ 261, 1, 415 ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 4, 4,
+      2, 5, 3
+    ],
+    rating_avg: 3.71,
+    servings: 5,
+    tags: [ 'mexican', 'quick', 'easy', 'chicken' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e878f5220a4f574c0aa56db"),
+    title: 'Maple Smoked Salmon',
+    calories_per_serving: 286,
+    cook_time: 20,
+    desc: 'Wonderful smoked salon with maple wood',
+    directions: [
+      'Prep smoker with maple',
+      'Scale and prep fish with maple syrup',
+      'Smoke / grill until done.'
+    ],
+    ingredients: [
+      { amount: { quantity: 3, unit: 'lbs' }, name: 'salmon' },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'maple syrup' }
+    ],
+    likes: [ 1 ],
+    likes_count: 1,
+    prep_time: 15,
+    servings: 4,
+    tags: [ 'fish', 'smoked', 'grill' ],
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e877cba20a4f574c0aa56da"),
+    title: 'Pancakes',
+    calories_per_serving: 232,
+    comments: [
+      {
+        body: 'I love these! They are so fluffy!',
+        date: ISODate("2000-01-03T18:42:30.000Z"),
+        name: 'Grace Hopper',
+        user_id: 2
+      }
+    ],
+    cook_time: 10,
+    desc: "Everyone's favorite pancakes",
+    directions: [
+      'Mix milk and vinegar in a medium bowl let set for 5 minutes to "sour".',
+      'Mix flour, sugar, baking powder, baking soda, and salt in a large mixing bowl.',
+      'Combine butter egg into milk.',
+      'Pour dry mixture into the wet ingredients and whisk until smooth.',
+      'Heat electric skillet to 435 F and coat with cooking spray.',
+      'Pour 1/4 cup of batter for each pancake onto the skillet, and cook until bubbles appear on the sides.',
+      'Flip and cook until browned.'
+    ],
+    ingredients: [
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'milk' },
+      {
+        amount: { quantity: 1.5, unit: 'tablespoon' },
+        name: 'white vinegar'
+      },
+      {
+        amount: { quantity: 0.5, unit: 'teaspoon' },
+        name: 'baking soda'
+      },
+      { amount: { quantity: 0.5, unit: 'teaspoon' }, name: 'salt' },
+      {
+        amount: { quantity: 2, unit: 'tablespoon' },
+        name: 'granulated sugar'
+      },
+      {
+        amount: { quantity: 1, unit: 'teaspoon' },
+        name: 'baking powder'
+      },
+      {
+        amount: { quantity: 1, unit: 'cup' },
+        name: 'all-purpose flour'
+      },
+      { amount: { quantity: 1, unit: null }, name: 'egg' },
+      { amount: { quantity: 2.5, unit: 'tablespoon' }, name: 'butter' }
+    ],
+    likes: [ 261, 415, 1, 35, 75 ],
+    likes_count: 4,
+    prep_time: 10,
+    rating: [
+      5, 4, 3, 5, 4,
+      5, 3, 1, 5
+    ],
+    rating_avg: 3.88,
+    servings: 4,
+    type: 'Breakfast'
+  },
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 2,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ],
+    type: 'Dinner'
+  },
+  {
+
+test> use cooker;
+switched to db cooker
+cooker> db.recipes.aggregate([{$match:{"title":"Tacos"}},{'$sort':{'cook_time':-1}},{$limit:2}]);
+[
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 2,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ],
+    type: 'Dinner'
+  }
+]
+cooker> db.recipes.aggregate([{$match:{"title":"Tacos"}},{"$sort":{"cook_time":-1}},{$limit:2}]);
+[
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 2,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: [ 'mexican', 'quick', 'easy', 'ground beef' ],
+    type: 'Dinner'
+  }
+]
+cooker>  db.recipes.distinct("title");
+[
+  'Apple Pie',
+  'Brown Sugar Meatloaf',
+  'Chicken Soft Tacos',
+  'Maple Smoked Salmon',
+  'Pancakes',
+  'Tacos',
+  'Zucchini Brownies'
+]
+cooker>  db.recipes.aggregate([$unwind:"$tags"}]);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:30)
+
+> 1 |  db.recipes.aggregate([$unwind:"$tags"}]);
+    |                               ^
+  2 |
+
+cooker>  db.recipes.aggregate([{$unwind:"$tags"}]);
+[
+  {
+    _id: ObjectId("5e878f5220a4f574c0aa56db"),
+    title: 'Maple Smoked Salmon',
+    calories_per_serving: 286,
+    cook_time: 20,
+    desc: 'Wonderful smoked salon with maple wood',
+    directions: [
+      'Prep smoker with maple',
+      'Scale and prep fish with maple syrup',
+      'Smoke / grill until done.'
+    ],
+    ingredients: [
+      { amount: { quantity: 3, unit: 'lbs' }, name: 'salmon' },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'maple syrup' }
+    ],
+    likes: [ 1 ],
+    likes_count: 1,
+    prep_time: 15,
+    servings: 4,
+    tags: 'fish',
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e878f5220a4f574c0aa56db"),
+    title: 'Maple Smoked Salmon',
+    calories_per_serving: 286,
+    cook_time: 20,
+    desc: 'Wonderful smoked salon with maple wood',
+    directions: [
+      'Prep smoker with maple',
+      'Scale and prep fish with maple syrup',
+      'Smoke / grill until done.'
+    ],
+    ingredients: [
+      { amount: { quantity: 3, unit: 'lbs' }, name: 'salmon' },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'maple syrup' }
+    ],
+    likes: [ 1 ],
+    likes_count: 1,
+    prep_time: 15,
+    servings: 4,
+    tags: 'smoked',
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e878f5220a4f574c0aa56db"),
+    title: 'Maple Smoked Salmon',
+    calories_per_serving: 286,
+    cook_time: 20,
+    desc: 'Wonderful smoked salon with maple wood',
+    directions: [
+      'Prep smoker with maple',
+      'Scale and prep fish with maple syrup',
+      'Smoke / grill until done.'
+    ],
+    ingredients: [
+      { amount: { quantity: 3, unit: 'lbs' }, name: 'salmon' },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'maple syrup' }
+    ],
+    likes: [ 1 ],
+    likes_count: 1,
+    prep_time: 15,
+    servings: 4,
+    tags: 'grill',
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5edf1cd43260aab97ea0d588"),
+    title: 'Apple Pie',
+    calories_per_serving: 384,
+    comments: [
+      {
+        body: "Solid apple pie! Well I don't mean it is actually solid I mean it is really good ... it's actually both soft and crusty. I don't mean like bad crusty, I mean like the crust is ... oh never-mind.",
+        date: ISODate("2020-09-07T18:42:30.000Z"),
+        name: 'Caderyn Jenkins',
+        user_id: 1
+      },
+      {
+        body: 'Mine is better, but this pretty good.',
+        date: ISODate("2000-02-03T18:42:30.000Z"),
+        name: 'Grace Hopper',
+        user_id: 2
+      }
+    ],
+    cook_time: 45,
+    desc: 'All American 🍏 pie',
+    directions: [
+      'Preheat oven to 425 F',
+      'Put bottom crust in pan place in refrigerator',
+      'Peal, de-core and chop apple into 1/2 to 1 inch pieces (or slice into thin pieces)',
+      'Mix flour with sugar and spices',
+      'Mix apples with flour/spice/sugar and juice from lemon',
+      'Pour into pan with bottom crust and optionally slice a few pieces of button on top',
+      'Place top crust on top and pinch sides. Cut small slits into middle of top.',
+      'Cover edges with foil around top of crust and remove durning last 20 minutes.',
+      'Bake 45 minutes.'
+    ],
+    ingredients: [
+      { amount: { quantity: 2, unit: null }, name: 'pie crusts' },
+      {
+        amount: { quantity: 6, unit: null },
+        name: 'granny smith apples'
+      },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'granulated sugar'
+      },
+      { amount: { quantity: 1, unit: 'tbsp' }, name: 'cinnamon' },
+      { amount: { quantity: 1, unit: 'tps' }, name: 'nutmeg' },
+      { amount: { quantity: 1, unit: null }, name: 'lemon' }
+    ],
+    likes: [ 2, 1, 75 ],
+    likes_count: 3,
+    prep_time: 25,
+    rating: [
+      5, 5, 5, 5, 5, 5, 5,
+      5, 5, 5, 5, 5, 5, 5,
+      5, 5, 5, 1, 5, 5
+    ],
+    rating_avg: 4.8,
+    servings: 8,
+    tags: 'traditional',
+    type: 'Dessert'
+  },
+  {
+    _id: ObjectId("5edf1cd43260aab97ea0d588"),
+    title: 'Apple Pie',
+    calories_per_serving: 384,
+    comments: [
+      {
+        body: "Solid apple pie! Well I don't mean it is actually solid I mean it is really good ... it's actually both soft and crusty. I don't mean like bad crusty, I mean like the crust is ... oh never-mind.",
+        date: ISODate("2020-09-07T18:42:30.000Z"),
+        name: 'Caderyn Jenkins',
+        user_id: 1
+      },
+      {
+        body: 'Mine is better, but this pretty good.',
+        date: ISODate("2000-02-03T18:42:30.000Z"),
+        name: 'Grace Hopper',
+        user_id: 2
+      }
+    ],
+    cook_time: 45,
+    desc: 'All American 🍏 pie',
+    directions: [
+      'Preheat oven to 425 F',
+      'Put bottom crust in pan place in refrigerator',
+      'Peal, de-core and chop apple into 1/2 to 1 inch pieces (or slice into thin pieces)',
+      'Mix flour with sugar and spices',
+      'Mix apples with flour/spice/sugar and juice from lemon',
+      'Pour into pan with bottom crust and optionally slice a few pieces of button on top',
+      'Place top crust on top and pinch sides. Cut small slits into middle of top.',
+      'Cover edges with foil around top of crust and remove durning last 20 minutes.',
+      'Bake 45 minutes.'
+    ],
+    ingredients: [
+      { amount: { quantity: 2, unit: null }, name: 'pie crusts' },
+      {
+        amount: { quantity: 6, unit: null },
+        name: 'granny smith apples'
+      },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'granulated sugar'
+      },
+      { amount: { quantity: 1, unit: 'tbsp' }, name: 'cinnamon' },
+      { amount: { quantity: 1, unit: 'tps' }, name: 'nutmeg' },
+      { amount: { quantity: 1, unit: null }, name: 'lemon' }
+    ],
+    likes: [ 2, 1, 75 ],
+    likes_count: 3,
+    prep_time: 25,
+    rating: [
+      5, 5, 5, 5, 5, 5, 5,
+      5, 5, 5, 5, 5, 5, 5,
+      5, 5, 5, 1, 5, 5
+    ],
+    rating_avg: 4.8,
+    servings: 8,
+    tags: '4th of july',
+    type: 'Dessert'
+  },
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos',
+    calories_per_serving: 205,
+    cook_time: 19,
+    desc: 'Mexican soft tacos',
+    directions: [
+      'Put seasoning on chicken breasts',
+      'Grill until done',
+      'Chop chicken into pieces',
+      'Put in tortillas'
+    ],
+    ingredients: [
+      { name: 'chicken breast', quantity: { amount: 1, unit: 'lbs' } },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      {
+        name: 'small flour tortillas',
+        quantity: { amount: 12, unit: 'oz' }
+      }
+    ],
+    likes: [ 261, 1, 415 ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 4, 4,
+      2, 5, 3
+    ],
+    rating_avg: 3.71,
+    servings: 5,
+    tags: 'mexican',
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos',
+    calories_per_serving: 205,
+    cook_time: 19,
+    desc: 'Mexican soft tacos',
+    directions: [
+      'Put seasoning on chicken breasts',
+      'Grill until done',
+      'Chop chicken into pieces',
+      'Put in tortillas'
+    ],
+    ingredients: [
+      { name: 'chicken breast', quantity: { amount: 1, unit: 'lbs' } },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      {
+        name: 'small flour tortillas',
+        quantity: { amount: 12, unit: 'oz' }
+      }
+    ],
+    likes: [ 261, 1, 415 ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 4, 4,
+      2, 5, 3
+    ],
+    rating_avg: 3.71,
+    servings: 5,
+    tags: 'quick',
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos',
+    calories_per_serving: 205,
+    cook_time: 19,
+    desc: 'Mexican soft tacos',
+    directions: [
+      'Put seasoning on chicken breasts',
+      'Grill until done',
+      'Chop chicken into pieces',
+      'Put in tortillas'
+    ],
+    ingredients: [
+      { name: 'chicken breast', quantity: { amount: 1, unit: 'lbs' } },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      {
+        name: 'small flour tortillas',
+        quantity: { amount: 12, unit: 'oz' }
+      }
+    ],
+    likes: [ 261, 1, 415 ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 4, 4,
+      2, 5, 3
+    ],
+    rating_avg: 3.71,
+    servings: 5,
+    tags: 'easy',
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e6fd805fa98021236426a24"),
+    title: 'Chicken Soft Tacos',
+    calories_per_serving: 205,
+    cook_time: 19,
+    desc: 'Mexican soft tacos',
+    directions: [
+      'Put seasoning on chicken breasts',
+      'Grill until done',
+      'Chop chicken into pieces',
+      'Put in tortillas'
+    ],
+    ingredients: [
+      { name: 'chicken breast', quantity: { amount: 1, unit: 'lbs' } },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      {
+        name: 'small flour tortillas',
+        quantity: { amount: 12, unit: 'oz' }
+      }
+    ],
+    likes: [ 261, 1, 415 ],
+    likes_count: 3,
+    prep_time: 10,
+    rating: [
+      4, 4, 4, 4,
+      2, 5, 3
+    ],
+    rating_avg: 3.71,
+    servings: 5,
+    tags: 'chicken',
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e87856d07beb474c074c5ca"),
+    title: 'Brown Sugar Meatloaf',
+    calories_per_serving: 273,
+    cook_time: 60,
+    desc: 'A sweet twist on traditional meatloaf',
+    directions: [
+      'Preheat oven to 350 F and lightly grease a 5x9 inch loaf pan.',
+      'Spread and press brown sugar to the bottom of loaf pan and spread ketchup over the sugar.',
+      'In a mixing bowl, mix remaining ingredients',
+      'Shape and press into a loaf pan (on top of the ketchup and sugar).',
+      'Bake for 1 hour.'
+    ],
+    ingredients: [
+      {
+        amount: { quantity: 0.5, unit: 'cup' },
+        name: 'packed brown sugar'
+      },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'ketchup' }
+    ],
+    likes: [ 415, 2, 75 ],
+    likes_count: 3,
+    prep_time: 12,
+    rating: [ 4, 1, 4, 4 ],
+    rating_avg: 3.25,
+    servings: 7,
+    tags: 'ground beef',
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e87856d07beb474c074c5ca"),
+    title: 'Brown Sugar Meatloaf',
+    calories_per_serving: 273,
+    cook_time: 60,
+    desc: 'A sweet twist on traditional meatloaf',
+    directions: [
+      'Preheat oven to 350 F and lightly grease a 5x9 inch loaf pan.',
+      'Spread and press brown sugar to the bottom of loaf pan and spread ketchup over the sugar.',
+      'In a mixing bowl, mix remaining ingredients',
+      'Shape and press into a loaf pan (on top of the ketchup and sugar).',
+      'Bake for 1 hour.'
+    ],
+    ingredients: [
+      {
+        amount: { quantity: 0.5, unit: 'cup' },
+        name: 'packed brown sugar'
+      },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'ketchup' }
+    ],
+    likes: [ 415, 2, 75 ],
+    likes_count: 3,
+    prep_time: 12,
+    rating: [ 4, 1, 4, 4 ],
+    rating_avg: 3.25,
+    servings: 7,
+    tags: 'family meal',
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e87856d07beb474c074c5ca"),
+    title: 'Brown Sugar Meatloaf',
+    calories_per_serving: 273,
+    cook_time: 60,
+    desc: 'A sweet twist on traditional meatloaf',
+    directions: [
+      'Preheat oven to 350 F and lightly grease a 5x9 inch loaf pan.',
+      'Spread and press brown sugar to the bottom of loaf pan and spread ketchup over the sugar.',
+      'In a mixing bowl, mix remaining ingredients',
+      'Shape and press into a loaf pan (on top of the ketchup and sugar).',
+      'Bake for 1 hour.'
+    ],
+    ingredients: [
+      {
+        amount: { quantity: 0.5, unit: 'cup' },
+        name: 'packed brown sugar'
+      },
+      { amount: { quantity: 0.5, unit: 'cup' }, name: 'ketchup' }
+    ],
+    likes: [ 415, 2, 75 ],
+    likes_count: 3,
+    prep_time: 12,
+    rating: [ 4, 1, 4, 4 ],
+    rating_avg: 3.25,
+    servings: 7,
+    tags: 'easy',
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5edf1d313260aab97ea0d589"),
+    title: 'Zucchini Brownies',
+    calories_per_serving: 271,
+    cook_time: 32,
+    desc: "Don't worry, they won't turn out green",
+    directions: [
+      'Combine brownie mix with other ingredients',
+      'Bake as it says on box',
+      "Don't actually make or eat this."
+    ],
+    high_alt: {
+      add_ingredients: [ { amount: { quantity: '2', unit: 'tbsp' }, name: 'flour' } ],
+      add_time: 5
+    },
+    ingredients: [
+      { amount: { quantity: 1, unit: 'cup' }, name: 'butter' },
+      { amount: { quantity: 2, unit: null }, name: 'egg' },
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'plain yogurt' },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'shredded zucchini'
+      },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'chocolate chips (semisweet)'
+      },
+      {
+        amount: { quantity: 3, unit: 'lbs' },
+        name: 'creamy peanut butter'
+      },
+      { amount: { quantity: 1, unit: null }, name: 'brownie mix' }
+    ],
+    prep_time: 12,
+    rating: [ 1, 1, 1, 1, 5 ],
+    rating_avg: 1.8,
+    servings: 12,
+    tags: 'sweets',
+    type: 'Dessert'
+  },
+  {
+    _id: ObjectId("5edf1d313260aab97ea0d589"),
+    title: 'Zucchini Brownies',
+    calories_per_serving: 271,
+    cook_time: 32,
+    desc: "Don't worry, they won't turn out green",
+    directions: [
+      'Combine brownie mix with other ingredients',
+      'Bake as it says on box',
+      "Don't actually make or eat this."
+    ],
+    high_alt: {
+      add_ingredients: [ { amount: { quantity: '2', unit: 'tbsp' }, name: 'flour' } ],
+      add_time: 5
+    },
+    ingredients: [
+      { amount: { quantity: 1, unit: 'cup' }, name: 'butter' },
+      { amount: { quantity: 2, unit: null }, name: 'egg' },
+      { amount: { quantity: 0.75, unit: 'cup' }, name: 'plain yogurt' },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'shredded zucchini'
+      },
+      {
+        amount: { quantity: 0.75, unit: 'cup' },
+        name: 'chocolate chips (semisweet)'
+      },
+      {
+        amount: { quantity: 3, unit: 'lbs' },
+        name: 'creamy peanut butter'
+      },
+      { amount: { quantity: 1, unit: null }, name: 'brownie mix' }
+    ],
+    prep_time: 12,
+    rating: [ 1, 1, 1, 1, 5 ],
+    rating_avg: 1.8,
+    servings: 12,
+    tags: 'easy',
+    type: 'Dessert'
+  },
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 2,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: 'mexican',
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 2,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: 'quick',
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 2,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: 'easy',
+    type: 'Dinner'
+  },
+  {
+    _id: ObjectId("5e5e9c470d33e9e8e3891b35"),
+    title: 'Tacos',
+    calories_per_serving: 210,
+    cook_time: 20,
+    desc: 'Classic Mexican tacos',
+    directions: [
+      'Brown beef',
+      'Add taco seasoning and water, mix',
+      'Bring to boil',
+      'Lower heat to simmer 5-10 minutes until desired consistency',
+      'Put meat in tacos'
+    ],
+    ingredients: [
+      {
+        name: 'ground beef (lean)',
+        quantity: { amount: 1, unit: 'lbs' }
+      },
+      { name: 'taco seasoning', quantity: { amount: 2, unit: 'oz' } },
+      { name: 'corn hard tacos', quantity: { amount: 12, unit: 'oz' } }
+    ],
+    likes: [ 1, 415 ],
+    likes_count: 2,
+    prep_time: 10,
+    rating: [
+      4, 4, 3, 4, 2,
+      5, 2, 2, 4, 5
+    ],
+    rating_avg: 3.5,
+    servings: 4,
+    tags: 'ground beef',
+    type: 'Dinner'
+  }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

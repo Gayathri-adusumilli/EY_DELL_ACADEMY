@@ -1,0 +1,65 @@
+USE hplus;
+SELECT * FROM employee;
+select * FROM emp_table;
+
+CREATE TABLE hplus.employee3(
+ID INT,
+NAME VARCHAR(25),
+ROLE VARCHAR(25),
+CITY VARCHAR(25),
+COUNTRY VARCHAR(25));
+commit;            
+Select * FROM employee3;
+
+
+DROP PROCEDURE hplus.insertEmployee3;
+DELIMITER // ;
+CREATE PROCEDURE hplus.insertEmployee3
+(IN in_id INT,
+IN in_name VARCHAR (20),
+IN in_role VARCHAR (20),
+IN in_city VARCHAR (25),
+IN in_country VARCHAR (25),
+OUT out_result VARCHAR (25))
+BEGIN
+
+INSERT INTO hplus.EMPLOYEE3 (ID, NAME, ROLE, CITY, COUNTRY) values (in_id,in_name,in_role,in_city,in_country);
+commit;
+SET out_result :='TRUE';
+END;
+
+Drop DATABASE hplus;
+
+
+CREATE DATABASE ey1;
+USE ey1;
+CREATE TABLE ey1.customers1(
+id INT NOT NULL, 
+first_name VARCHAR(20) NOT NULL, 
+last_name VARCHAR(20),
+id1 INT NOT NULL,
+CONSTRAINT pk_id PRIMARY KEY(id), CONSTRAINT fk_address2 FOREIGN KEY(id1) REFERENCES address2(id1),
+UNIQUE (first_name)
+);
+DESCRIBE customers1;
+
+CREATE TABLE ey1.address2(
+id1 INT NOT NULL,
+street_line1 VARCHAR(30),
+street_line2 VARCHAR(30),
+state VARCHAR(20),
+country VARCHAR(20),
+CONSTRAINT pk_id1 PRIMARY KEY(id1)
+);
+
+INSERT INTO address2 VALUES(1,"hyderabad","madinaguda","Telangana","India");
+INSERT INTO address2 VALUES(2,"hyd","mad","Tel","India");
+
+INSERT INTO customers1 VALUES(1,"Gayathri","Adusumilli", 2);
+INSERT INTO customers1 VALUES(2,"Gayathriiii","A", 1);
+
+SELECT * FROM customers1;
+SELECT * FROM address2;
+
+
+
